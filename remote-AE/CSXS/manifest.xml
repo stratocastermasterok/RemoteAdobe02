@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionManifest
+	Version="4.0"
+	ExtensionBundleId="AE.websocket.panel"
+	ExtensionBundleVersion="1.0.0"
+	ExtensionBundleName="AE.websocket.panel"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<ExtensionList>
+		<Extension Id="AE.websocket.panel" Version="1.0" />
+	</ExtensionList>
+
+	<ExecutionEnvironment>
+		<HostList>
+			<Host Name="AEFT" Version="13.0" />
+		</HostList>
+
+	<LocaleList>
+		<Locale Code="All" />
+	</LocaleList>
+
+	<RequiredRuntimeList>
+		<RequiredRuntime Name="CSXS" Version="4.0" />
+	</RequiredRuntimeList>
+</ExecutionEnvironment>
+
+	<DispatchInfoList>
+		<Extension Id="AE.websocket.panel">
+			<DispatchInfo>
+
+			<Resources>
+				<MainPath>./index.html</MainPath>
+				<ScriptPath>./jsx/aftereffects.jsx</ScriptPath>
+			</Resources>
+
+			<Lifecycle>
+				<AutoVisible>true</AutoVisible>
+			</Lifecycle>
+
+			<UI>
+
+				<Type>Panel</Type>
+				<Menu>Adobe Remote</Menu>
+
+				<Geometry>
+					<Size>
+						<Height>580</Height>
+						<Width>400</Width>
+					</Size>
+				
+					
+				</Geometry>
+
+			</UI>
+		</DispatchInfo>
+	</Extension>
+</DispatchInfoList>
+</ExtensionManifest>
