@@ -20,9 +20,9 @@ io.on('connection', (socket)=>{
 
     //From WEB to Premiere
 
-    socket.on("Render_Seq", (data)=>{
+    socket.on('ButtonPress', (data)=>{
         console.log("got in");
-        io.emit('Render_Seq_AE', data);
+        io.emit('ButtonPress', data);
         console.log("sent data");
 
     })

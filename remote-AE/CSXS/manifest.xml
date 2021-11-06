@@ -12,7 +12,9 @@
 
 	<ExecutionEnvironment>
 		<HostList>
-			<Host Name="AEFT" Version="13.0" />
+            <Host Name="AEFT" Version="[13.0,17.9]" Port="3333" />
+            <Host Name="AEFX" Version="[13.0,17.9]" Port="3333" />
+
 		</HostList>
 
 	<LocaleList>
@@ -20,7 +22,7 @@
 	</LocaleList>
 
 	<RequiredRuntimeList>
-		<RequiredRuntime Name="CSXS" Version="4.0" />
+			<RequiredRuntime Name="CSXS" Version="9.0" />
 	</RequiredRuntimeList>
 </ExecutionEnvironment>
 
@@ -31,6 +33,11 @@
 			<Resources>
 				<MainPath>./index.html</MainPath>
 				<ScriptPath>./jsx/aftereffects.jsx</ScriptPath>
+				<CEFCommandLine>
+						<Parameter>--allow-file-access</Parameter>
+						<Parameter>--allow-file-access-from-files</Parameter>
+						<Parameter>--enable-nodejs</Parameter>
+					</CEFCommandLine>
 			</Resources>
 
 			<Lifecycle>

@@ -23,5 +23,5 @@ function renderMe(){
     //myInfo =".5,6,7,8";
     console.log(myInfo);
 
-    socket.emit('Render_Seq', myInfo)
+    socket.emit('ButtonPress', myInfo)
 }
