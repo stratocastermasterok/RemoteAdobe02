@@ -12,8 +12,7 @@
 
 	<ExecutionEnvironment>
 		<HostList>
-            <Host Name="AEFT" Version="[13.0,17.9]" Port="3333" />
-            <Host Name="AEFX" Version="[13.0,17.9]" Port="3333" />
+            <Host Name="AEFT" Version="13.0" Port="3333" />
 
 		</HostList>
 
