@@ -1,0 +1,19 @@
+<html>
+    <head></head>
+    <body>
+        <div id="area" style="width: 400px;height: 400px; background-color: black; border: 1px solid green;"></div>
+    </body>
+     <script type="text/javascript">
+            document.body.style.backgroundColor = "red";
+            const ws = new WebSocket('ws://localhost:9999');
+            ws.addEventListener('open', () => {
+                document.body.style.backgroundColor = "blue";
+            });
+            document.getElementById('area').addEventListener('mousemove',e => {
+                const data = { x: e.offsetX, y: e.offsetY }
+                console.log("send", data);
+                const json = JSON.stringify(data);
+                ws.send(json);
+            });
+        </script>
+</html>

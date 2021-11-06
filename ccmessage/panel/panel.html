@@ -1,0 +1,34 @@
+<html>
+    <body>
+        <div id="msg" style="color: white;"></div>
+         <div id="area"  style="background-color: black; border: 1px solid green;">
+             <canvas id='draw' width="400" height="400"></canvas>
+         </div>
+    </body>
+    <script type="text/javascript">
+        document.body.style.backgroundColor = "red";
+        const ws = new WebSocket('ws://localhost:9999');
+        ws.addEventListener('open', () => {
+            document.body.style.backgroundColor = "blue";
+            ws.addEventListener('message', event => {
+                console.log('Received:', event);
+                document.getElementById('msg').innerHTML = event.data;
+                var jsonData = JSON.parse(event.data);
+                console.log('ReceivedJJ:', jsonData);
+                context.beginPath();
+                context.strokeStyle = 'white';
+                context.lineWidth = 1;
+                context.moveTo(lastX, lastY);
+                context.lineTo(jsonData.x, jsonData.y);
+                context.stroke();
+                context.closePath();
+                lastX = jsonData.x;
+                lastY = jsonData.y
+
+            });
+        });
+        const context = document.getElementById('draw').getContext('2d');
+        var lastX = 0;
+        var lastY = 0;
+    </script>
+</html>
