@@ -4,22 +4,49 @@
 		<meta charset="utf-8">
 		<title> Adobe Remote </title>
 	</head>
+	<link rel="stylesheet" href="css/style.css"/>
 
-	<body id="body">
-        <h2>Adobe Remote</h2>
-        
-		<button id="renderButton">Render Sequence</button>
-		
-		<Br>
-		<div id="myText" >
-		
-				Placeholder text
 
+
+
+	<body id="body" style="overflow-y:auto;" >
+		<h2>Adobe Remote</h2>
+		
+		<div id="area" style="width: 640px ;height: 380px; background-color: black; border: 1px solid green;">
 		</div>
+        
+		
+		<br>
+		<br>
+		<button id="renderButton">Push to Panel</button>
+		<button id="clearButton">Clear</button>
+
+
+		<Br>
+		<br>
+
+
+		<div id="myText" style="width: 400px;height: 100px; background-color: red; border: 1px solid green;  overflow-y:auto;">
+		
+			Placeholder text
+
+	</div>
+		
+
+
+			
+
+
+
+
+
+
+
+
+		
 
         
 	<script src="/socket.io/socket.io.js"></script>
-
 	<script src="./index.js"></script>
 	</body>
 </html>

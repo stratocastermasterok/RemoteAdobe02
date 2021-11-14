@@ -23,36 +23,36 @@ function osCheck() {
 
 function pilotTomi(infoStach) {
 
-        //alert("insideee the pilot jsx");
-        var infoStach2 = infoStach;
-        //alert(infoStach2);
+        alert("insideee the pilot jsx " + infoStach);
+        var infoStach2 = eval(infoStach);
+        alert(infoStach2);
 
 
     	app.beginUndoGroup("newstuff");
-		//alert("inside jsx...");
+		alert("inside jsx...");
 		var myComp = app.project.activeItem;
-		//alert("inside jsx... second line");
+		alert("inside jsx... second line");
 
 
 				
 		var selectedLayers = myComp.selectedLayers;
 		var myTime = myComp.time;
-		//alert(selectedLayers.length+" "+ infoStach2.length);
+		alert(selectedLayers.length+" "+ infoStach2.length);
 
 
 		for (mmm=0; mmm<selectedLayers.length;mmm++)
 		{
-           // alert("within for loop selected... third line");
+            alert("within for loop selected... third line");
 
 
 				for (iii=0; iii<(infoStach2.length);iii++)
 				{
 
-                   // alert(infoStach2.length);
+                    alert(infoStach2.length);
 
 
 
-					myVal = [infoStach2[iii][0]*3,infoStach2[iii][1]*3];
+					myVal = [infoStach2[iii][0],infoStach2[iii][1]];
 					
 					selectedLayers[mmm].property("position").setValueAtTime(myTime,myVal);
 					myTime += (1/24);
@@ -60,7 +60,7 @@ function pilotTomi(infoStach) {
 				}
 
         }
-        alert("success!");
+        alert("iafter loop");
 
 
         app.endUndoGroup(); 

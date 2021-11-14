@@ -6,19 +6,31 @@ const socket = io('http://localhost:3333')
 let infoStach =[];
 
 
+
+
+
 function renderMe(){
-	//alert("AE notices");
-	//infoStach=eval("["+infoStach+"]");
-	//alert("here looook"+infoStach.length);
-	//alert(infoStach);
-	infoStach="["+infoStach.toString()+"]";
-	//alert(infoStach);
+	alert("AE notices");
+	infoStach=eval("["+infoStach+"]");
+	alert("here looook"+infoStach.length);
+	alert(infoStach);
 
 	const csInterface = new CSInterface();
 		csInterface.evalScript('pilotTomi('+infoStach+')', function(res) {
 		
 	});
+
+
+
 }
+
+
+
+                     
+                    
+
+
+
 
 
 
