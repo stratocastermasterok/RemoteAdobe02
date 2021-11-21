@@ -11,15 +11,22 @@ function renderMe(){
 	//infoStach=eval("["+infoStach+"]");
 	//alert("here looook"+infoStach.length);
 	//alert(infoStach);
-	infoStach="["+infoStach.toString()+"]";
+	infoAsString = JSON.stringify(infoStach);
 	//alert(infoStach);
 
 	const csInterface = new CSInterface();
-		csInterface.evalScript('pilotTomi('+infoStach+')', function(res) {
+		csInterface.evalScript('pilotTomi('+infoAsString+')', function(res) {
 		
 	});
 }
 
+function renderMe2(){
+	infoStach="["+infoStach.toString()+"]";
+
+	const csInterface = new CSInterface();
+		csInterface.evalScript('pilotTomi2('+infoStach+')', function(res) {
+	});
+}
 
 
 
@@ -35,7 +42,7 @@ socket.on('connect', ()=>{
 		//myReceivedText.innerText = info;
 		myReceivedText.innerText = "Got 'em";
 
-		alert(info);
+		//alert(info);
 		infoStach = info;
 	
 
@@ -43,6 +50,7 @@ socket.on('connect', ()=>{
 
 
 	document.getElementById('panelButton').addEventListener('click', renderMe);
+	document.getElementById('panelButton2').addEventListener('click', renderMe2);
 
 })
 

@@ -10,8 +10,12 @@ socket.on('connect', ()=>{
     let myAEdata= [];
 
 
+
     document.getElementById('area').addEventListener('mousemove',e => {
-        const data = [e.offsetX, e.offsetY];
+        const data = {
+                        x: e.offsetX,
+                        y: e.offsetY
+                    };
 
         console.log("send", data);
         const json = JSON.stringify(data);
