@@ -3,6 +3,8 @@ const mpHands = window;
 const drawingUtils = window;
 const controls = window;
 const controls3d = window;
+
+
 // Usage: testSupport({client?: string, os?: string}[])
 // Client and os are regular expressions.
 // See: https://cdn.jsdelivr.net/npm/device-detector-js@2.2.10/README.md for
@@ -63,6 +65,9 @@ const grid = new controls3d.LandmarkGrid(landmarkContainer, {
     showHidden: false,
     centered: false,
 });
+
+var myTracking = [];
+
 function onResults(results) {
     // Hide the spinner.
     document.body.classList.add('loaded');
@@ -77,6 +82,18 @@ function onResults(results) {
             const classification = results.multiHandedness[index];
             const isRightHand = classification.label === 'Right';
             const landmarks = results.multiHandLandmarks[index];
+
+
+            var toPush = {
+                            x: landmarks[8].x,
+                            y: landmarks[8].y
+                          }
+            myTracking.push(toPush);
+            //console.log(myTracking);
+            document.getElementById('myText').innerHTML = myTracking;
+
+
+
             drawingUtils.drawConnectors(canvasCtx, landmarks, mpHands.HAND_CONNECTIONS, { color: isRightHand ? '#00FF00' : '#FF0000' });
             drawingUtils.drawLandmarks(canvasCtx, landmarks, {
                 color: isRightHand ? '#00FF00' : '#FF0000',

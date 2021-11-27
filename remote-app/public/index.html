@@ -1,52 +1,123 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title> Adobe Remote </title>
-	</head>
-	<link rel="stylesheet" href="css/style.css"/>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title> Adobe Remote </title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils_3d@0.3/control_utils_3d.css" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils@0.6/control_utils.css" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="demo.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils@0.6/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils_3d@0.3/control_utils_3d.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4/hands.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
 
 
 
 
-	<body id="body" style="overflow-y:auto;" >
-		<h2>Adobe Remote</h2>
+<body id="body" style="overflow-y:auto;">
+  <style>
+    .square-box {
+      width: 33%;
+      height: 0;
+      padding-top: 33%;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+
+    .landmark-grid-container {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top:0;
+      left:0;
+      background-color: #99999999;
+    }
+  </style>
+
+
+<h2>Adobe Remote</h2>
 		
-		<div id="area" style="width: 640px ;height: 380px; background-color: black; border: 1px solid green;">
-		</div>
-        
-		
-		<br>
-		<br>
-		<button id="renderButton">Push to Panel</button>
-		<button id="clearButton">Clear</button>
+<div id="area" style="width: 640px ;height: 380px; background-color: black; border: 1px solid green;">
+</div>
 
 
-		<Br>
-		<br>
+<br>
+<br>
+<button id="renderButton">Push to Panel</button>
+<button id="clearButton">Clear</button>
 
 
-		<div id="myText" style="width: 400px;height: 100px; background-color: red; border: 1px solid green;  overflow-y:auto;">
-		
-			Placeholder text
-
-	</div>
-		
+<Br>
+<br>
 
 
-			
+<div id="myText" style="width: 400px;height: 100px; background-color: red; border: 1px solid green;  overflow-y:auto;">
+
+	Placeholder text
+
+</div>
 
 
-
+<script src="/socket.io/socket.io.js"></script>
+<script src="./index.js"></script>
 
 
 
 
 
-		
 
-        
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="./index.js"></script>
-	</body>
+
+
+
+
+
+  <div class="container">
+    <video class="input_video"></video>
+    <canvas class="output_canvas" width="1280px" height="720px"></canvas>
+    <div class="loading">
+      <div class="spinner"></div>
+      <div class="message">
+        Loading
+      </div>
+    </div>
+
+    
+
+  </div>
+  <div class="control-panel">
+  </div>
+  <div class='square-box'>
+    <div class="landmark-grid-container">
+    </div>
+  </div>
+<!-- partial -->
+  <script type="module" src="./script.js"></script>
+
+</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

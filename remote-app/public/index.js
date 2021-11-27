@@ -59,8 +59,7 @@ socket.on('connect', ()=>{
 
     function clearMe(){
         document.getElementById('myText').innerHTML= "";
-        document.getElementById('area').removeEventListener('mousemove');
-        myAEdata= [[0,0]];
+        myAEdata= [];
 
 
 
