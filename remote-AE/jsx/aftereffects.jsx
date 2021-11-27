@@ -23,7 +23,7 @@ function osCheck() {
 
 
 
-    function pilotTomi2(infoStach) {
+    function pilotAECode(infoStach) {
 
 
     	app.beginUndoGroup("newstuff2");
@@ -35,20 +35,20 @@ function osCheck() {
         var myTime = myComp.time;
         
 
-		for (mmm=0; mmm<selectedLayers.length;mmm++)
+		for (selectedLayerNumber=0; selectedLayerNumber<selectedLayers.length;selectedLayerNumber++)
 		{
 
-            var initialVal= selectedLayers[mmm].property("position").valueAtTime(myTime,false);
+            var initialVal= selectedLayers[selectedLayerNumber].property("position").valueAtTime(myTime,false);
 
 
-				for (iii=0; iii<(infoStach.length);iii++)
+				for (myInfoStachIndex=0; myInfoStachIndex<(infoStach.length);myInfoStachIndex++)
 				{
 
 
-					var myVal = [(infoStach[iii].x*3),(infoStach[iii].y*3)];
+					var myVal = [(infoStach[myInfoStachIndex].x*3),(infoStach[myInfoStachIndex].y*3)];
                     var myValPlusInitialVal = [myVal[0]+initialVal[0],myVal[1]+initialVal[1]];
                     
-					selectedLayers[mmm].property("position").setValueAtTime(myTime,myValPlusInitialVal);
+					selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myValPlusInitialVal);
 					myTime += (1/24);
 
                 }

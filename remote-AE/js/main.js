@@ -12,7 +12,7 @@ function tossPositionToLayers(){
 	infoStach="["+infoStach.toString()+"]";
 
 	const csInterface = new CSInterface();
-		csInterface.evalScript('pilotTomi2('+infoStach+')', function(res) {
+		csInterface.evalScript('pilotAECode('+infoStach+')', function(res) {
 	});
 }
 
@@ -28,7 +28,7 @@ socket.on('connect', ()=>{
 
 		let myReceivedText = document.getElementById('myIndexText');
 		//myReceivedText.innerText = info;
-		myReceivedText.innerText = "Got 'em";
+		myReceivedText.innerText = "Got 'em: " + info.length ;
 
 		//alert(info);
 		infoStach = info;
