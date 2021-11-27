@@ -6,21 +6,9 @@ const socket = io('http://localhost:3333')
 let infoStach =[];
 
 
-function renderMe(){
-	//alert("AE notices");
-	//infoStach=eval("["+infoStach+"]");
-	//alert("here looook"+infoStach.length);
-	//alert(infoStach);
-	infoAsString = JSON.stringify(infoStach);
-	//alert(infoStach);
 
-	const csInterface = new CSInterface();
-		csInterface.evalScript('pilotTomi('+infoAsString+')', function(res) {
-		
-	});
-}
 
-function renderMe2(){
+function tossPositionToLayers(){
 	infoStach="["+infoStach.toString()+"]";
 
 	const csInterface = new CSInterface();
@@ -49,8 +37,7 @@ socket.on('connect', ()=>{
 	})
 
 
-	document.getElementById('panelButton').addEventListener('click', renderMe);
-	document.getElementById('panelButton2').addEventListener('click', renderMe2);
+	document.getElementById('panelButton').addEventListener('click', tossPositionToLayers);
 
 })
 

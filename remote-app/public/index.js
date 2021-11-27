@@ -11,20 +11,28 @@ socket.on('connect', ()=>{
 
 
 
-    document.getElementById('area').addEventListener('mousemove',e => {
-        const data = {
-                        x: e.offsetX,
-                        y: e.offsetY
-                    };
+    document.getElementById('area').addEventListener('mousedown',e => {
 
-        console.log("send", data);
-        const json = JSON.stringify(data);
-        myAEdata.push(json);
-        console.log(myAEdata.length);
-        document.getElementById('myText').innerHTML= myAEdata;
+        const myFirstPointX = e.offsetX;
+        const myFirstPointY = e.offsetY;
 
 
+                document.getElementById('area').addEventListener('mousemove',e => {
 
+                const data = {
+                                x: e.offsetX -myFirstPointX,
+                                y: e.offsetY -myFirstPointY
+                            };
+
+                console.log("send", data);
+                const json = JSON.stringify(data);
+                myAEdata.push(json);
+                console.log(myAEdata.length);
+                document.getElementById('myText').innerHTML= myAEdata;
+
+
+
+            });
 
     });
 
