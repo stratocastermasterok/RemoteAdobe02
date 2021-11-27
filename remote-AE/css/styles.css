@@ -4,7 +4,7 @@
 body {
 	overflow-y: hidden;
 	overflow-x: hidden;
-	background-color: lightblue;
+	background-color: #A9A9A9;
 
 	bottom: 0;
 	font-family: 'Titillium Web', sans-serif;
@@ -38,14 +38,14 @@ body {
 	color: white;
 	text-decoration: none;
 	&:hover {
-	  color: lightblue;
+	  color: #ffffff;
 	}
   }
 
   
   .container {
 	position: absolute;
-	background-color: #596e73;
+	background-color: #A9A9A9;
 	width: 100%;
 	max-height: 100%;
   }
