@@ -14,7 +14,7 @@ function tossPositionToLayers(){
 	const csInterface = new CSInterface();
 		csInterface.evalScript('pilotAECode(['+infoStach+'])', function(res) {
 	});
-	alert(infoStach);
+	//alert(infoStach);
 }
 
 
