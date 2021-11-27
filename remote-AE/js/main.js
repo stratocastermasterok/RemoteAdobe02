@@ -9,11 +9,12 @@ let infoStach =[];
 
 
 function tossPositionToLayers(){
-	infoStach="["+infoStach.toString()+"]";
+	infoStach=infoStach.toString();
 
 	const csInterface = new CSInterface();
-		csInterface.evalScript('pilotAECode('+infoStach+')', function(res) {
+		csInterface.evalScript('pilotAECode(['+infoStach+'])', function(res) {
 	});
+	alert(infoStach);
 }
 
 
