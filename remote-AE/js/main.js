@@ -12,7 +12,7 @@ function tossPositionToLayers(){
 	infoStach=infoStach.toString();
 
 	const csInterface = new CSInterface();
-		csInterface.evalScript('pilotAECode(['+infoStach+'])', function(res) {
+		csInterface.evalScript('pilotHandAECode(['+infoStach+'])', function(res) {
 	});
 	//alert(infoStach);
 }

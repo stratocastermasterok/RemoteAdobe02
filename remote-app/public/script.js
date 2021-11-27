@@ -67,6 +67,8 @@ const grid = new controls3d.LandmarkGrid(landmarkContainer, {
 });
 
 var myTracking = [];
+var initialHandLocationX = 0;
+var initialHandLocationY = 0;   
 
 function onResults(results) {
     // Hide the spinner.
@@ -83,16 +85,37 @@ function onResults(results) {
             const isRightHand = classification.label === 'Right';
             const landmarks = results.multiHandLandmarks[index];
 
+  
+
+        if (myTracking.length<1)
+        {           
+            initialHandLocationX = landmarks[8].x;
+            initialHandLocationY = landmarks[8].y;    
 
             var toPush = {
-                            x: landmarks[8].x,
-                            y: landmarks[8].y
-                          }
-
-            const toPushJson = JSON.stringify(toPush);
+                x: 0,
+                y: 0
+              }
 
 
+            var toPushJson = JSON.stringify(toPush);
             myTracking.push(toPushJson);
+
+            
+        }
+
+        else
+        {
+            var toPush = {
+                x: landmarks[8].x-initialHandLocationX,
+                y: landmarks[8].y-initialHandLocationY
+              }
+              var toPushJson = JSON.stringify(toPush);
+              myTracking.push(toPushJson);
+        }
+            
+           
+
             //console.log(myTracking);
             document.getElementById('myText').innerHTML = myTracking;
 
