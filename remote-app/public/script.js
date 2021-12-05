@@ -40,8 +40,15 @@ function testSupport(supportedDevices) {
 // Our input frames will come from here.
 const videoElement = document.getElementsByClassName('input_video')[0];
 const canvasElement = document.getElementsByClassName('output_canvas')[0];
+const canvasElement2 = document.getElementsByClassName('output_canvas2')[0];
 const controlsElement = document.getElementsByClassName('control-panel')[0];
 const canvasCtx = canvasElement.getContext('2d');
+const canvasCtx2 = canvasElement2.getContext('2d');
+
+
+
+
+
 const config = { locateFile: (file) => {
         return `https://cdn.jsdelivr.net/npm/@mediapipe/hands@${mpHands.VERSION}/${file}`;
     } };
@@ -70,6 +77,9 @@ var myTracking = [];
 var initialHandLocationX = 0;
 var initialHandLocationY = 0;   
 
+var lastX = 0;
+var lastY = 0;
+
 function onResults(results) {
     // Hide the spinner.
     document.body.classList.add('loaded');
@@ -79,6 +89,8 @@ function onResults(results) {
     canvasCtx.save();
     canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
     canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
+
+
     if (results.multiHandLandmarks && results.multiHandedness) {
         for (let index = 0; index < results.multiHandLandmarks.length; index++) {
             const classification = results.multiHandedness[index];
@@ -97,6 +109,22 @@ function onResults(results) {
                 y: 0
               }
 
+            lastX=  initialHandLocationX*1280;
+            lastY=  initialHandLocationY*720;
+
+              canvasCtx2.beginPath();
+              canvasCtx2.strokeStyle = 'white';
+              canvasCtx2.lineWidth = 4;          
+              canvasCtx2.moveTo(lastX, lastY);
+              canvasCtx2.lineTo((toPush.x*1280)+(initialHandLocationX*1280), (toPush.y*720)+(initialHandLocationY*720));
+              
+              lastX=  toPush.x*1280;
+              lastY=  toPush.y*720;
+              canvasCtx2.closePath();
+
+              canvasCtx2.clearRect(0, 0, canvasElement2.width, canvasElement2.height);
+
+
 
             var toPushJson = JSON.stringify(toPush);
             myTracking.push(toPushJson);
@@ -106,18 +134,57 @@ function onResults(results) {
 
         else
         {
+
+            canvasCtx2.beginPath();
+            canvasCtx2.strokeStyle = 'white';
+            canvasCtx2.lineWidth = 4;              
+            canvasCtx2.moveTo(lastX,lastY);
+     
+
+
             var toPush = {
                 x: landmarks[8].x-initialHandLocationX,
                 y: landmarks[8].y-initialHandLocationY
               }
+
+
+            canvasCtx2.lineTo((toPush.x*1280)+(initialHandLocationX*1280), (toPush.y*720)+(initialHandLocationY*720));
+            canvasCtx2.closePath();
+
+
+
+            lastX=  (toPush.x*1280)+(initialHandLocationX*1280);
+            lastY=  (toPush.y*720)+(initialHandLocationY*720);
+
+
+
+
+
               var toPushJson = JSON.stringify(toPush);
               myTracking.push(toPushJson);
         }
             
-           
+
+
+
+
+
+
+        canvasCtx2.stroke();
+        canvasCtx2.closePath();
+        console.log("wroteline");
+
+
+        
 
             //console.log(myTracking);
             document.getElementById('myText').innerHTML = myTracking;
+
+    
+      
+
+
+
 
 
 
@@ -129,6 +196,11 @@ function onResults(results) {
                     return drawingUtils.lerp(data.from.z, -0.15, .1, 10, 1);
                 }
             });
+
+
+
+
+            
         }
     }
     canvasCtx.restore();
