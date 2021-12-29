@@ -101,3 +101,302 @@ function osCheck() {
         app.endUndoGroup(); 
         
     }
+
+
+
+    function pilotHandAECodeVisEvery12PlusAv(infoStach) {
+
+
+    	app.beginUndoGroup("newstuff2");
+		var myComp = app.project.activeItem;
+
+
+				
+		var selectedLayers = myComp.selectedLayers;
+        var myTime = myComp.time;
+        
+
+		for (selectedLayerNumber=0; selectedLayerNumber<selectedLayers.length;selectedLayerNumber++)
+		{
+
+            var initialVal= selectedLayers[selectedLayerNumber].property("position").valueAtTime(myTime,false);
+
+
+				for (myInfoStachIndex=0; myInfoStachIndex<infoStach.length; myInfoStachIndex+=12)
+				{
+
+					var myVal = [(infoStach[myInfoStachIndex].x*myComp.width),(infoStach[myInfoStachIndex].y*myComp.height)];
+                    var myValPlusInitialVal = [myVal[0]+initialVal[0],myVal[1]+initialVal[1]];
+
+                    //futureVal
+					var myVal2 = [(infoStach[myInfoStachIndex+6].x*myComp.width),(infoStach[myInfoStachIndex+6].y*myComp.height)];
+                    var myValPlusInitialVal2 = [myVal2[0]+initialVal[0],myVal2[1]+initialVal[1]];
+
+                    var myAverage = [.5*(myValPlusInitialVal[0]+myValPlusInitialVal2[0]),.5*(myValPlusInitialVal[1]+myValPlusInitialVal2[1])];
+
+                    
+					selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myValPlusInitialVal);
+                    myTime += (6/24);
+					selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myAverage);
+                    myTime += (6/24);
+
+
+                }
+                alert("successful averaging");
+
+
+        }
+
+
+        app.endUndoGroup(); 
+        
+    }
+
+
+
+    function pilotHandAECodeVisEvery12(infoStach) {
+
+
+    	app.beginUndoGroup("newstuff2");
+		var myComp = app.project.activeItem;
+
+
+				
+		var selectedLayers = myComp.selectedLayers;
+        var myTime = myComp.time;
+        
+
+		for (selectedLayerNumber=0; selectedLayerNumber<selectedLayers.length;selectedLayerNumber++)
+		{
+
+            var initialVal= selectedLayers[selectedLayerNumber].property("position").valueAtTime(myTime,false);
+
+
+				for (myInfoStachIndex=0; myInfoStachIndex<(infoStach.length);myInfoStachIndex+=12)
+				{
+
+
+					var myVal = [(infoStach[myInfoStachIndex].x*myComp.width),(infoStach[myInfoStachIndex].y*myComp.height)];
+                    var myValPlusInitialVal = [myVal[0]+initialVal[0],myVal[1]+initialVal[1]];
+                    
+					selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myValPlusInitialVal);
+					myTime += (12/24);
+
+                }
+
+
+        }
+
+
+        app.endUndoGroup(); 
+        
+    }
+
+
+
+
+    function smoothing(infoStach) {
+
+
+    	app.beginUndoGroup("newstuff2");
+		var myComp = app.project.activeItem;
+
+
+				
+		var selectedLayers = myComp.selectedLayers;
+        var myTime = myComp.time;
+        
+
+		for (selectedLayerNumber=0; selectedLayerNumber<selectedLayers.length;selectedLayerNumber++)
+		{
+
+            var initialVal= selectedLayers[selectedLayerNumber].property("position").valueAtTime(myTime,false);
+
+
+				for (myInfoStachIndex=0; myInfoStachIndex<infoStach.length; myInfoStachIndex++)
+				{
+
+
+
+
+                    if (myInfoStachIndex<(infoStach.length-7))
+                    {
+                        var xSum= (infoStach[myInfoStachIndex].x+infoStach[myInfoStachIndex+1].x+infoStach[myInfoStachIndex+2].x+infoStach[myInfoStachIndex+3].x+infoStach[myInfoStachIndex+4].x+infoStach[myInfoStachIndex+5].x+infoStach[myInfoStachIndex+6].x);
+
+                        var ySum=  (infoStach[myInfoStachIndex].y+infoStach[myInfoStachIndex+1].y+infoStach[myInfoStachIndex+2].y+infoStach[myInfoStachIndex+3].y+infoStach[myInfoStachIndex+4].y+infoStach[myInfoStachIndex+5].y+infoStach[myInfoStachIndex+6].y);
+
+                        var myAverage = [(1/7)*(xSum*myComp.width),(1/7)*(ySum*myComp.height)];
+                        var myAveragePlusInitialVal = [myAverage[0]+initialVal[0],myAverage[1]+initialVal[1]];
+
+                        selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myAveragePlusInitialVal);
+                        myTime += (1/24);
+
+
+
+                    }
+
+                    else
+
+                    {
+
+                        var myVal = [(infoStach[myInfoStachIndex].x*myComp.width),(infoStach[myInfoStachIndex].y*myComp.height)];
+                        var myValPlusInitialVal = [myVal[0]+initialVal[0],myVal[1]+initialVal[1]];
+    
+                        selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myValPlusInitialVal);
+                        myTime += (1/24);
+
+
+                    }
+
+
+
+
+
+                }
+                alert("successful averaging");
+
+
+        }
+
+
+        app.endUndoGroup(); 
+        
+    }
+
+    function smoothing3(infoStach) {
+
+
+    	app.beginUndoGroup("newstuff2");
+		var myComp = app.project.activeItem;
+
+
+				
+		var selectedLayers = myComp.selectedLayers;
+        var myTime = myComp.time;
+        
+
+		for (selectedLayerNumber=0; selectedLayerNumber<selectedLayers.length;selectedLayerNumber++)
+		{
+
+            var initialVal= selectedLayers[selectedLayerNumber].property("position").valueAtTime(myTime,false);
+
+
+				for (myInfoStachIndex=0; myInfoStachIndex<infoStach.length; myInfoStachIndex++)
+				{
+
+
+
+
+                    if (myInfoStachIndex<(infoStach.length-3))
+                    {
+                        var xSum= (infoStach[myInfoStachIndex].x+infoStach[myInfoStachIndex+1].x+infoStach[myInfoStachIndex+2].x);
+
+                        var ySum= (infoStach[myInfoStachIndex].y+infoStach[myInfoStachIndex+1].y+infoStach[myInfoStachIndex+2].y);
+
+                        var myAverage = [(1/3)*(xSum*myComp.width),(1/3)*(ySum*myComp.height)];
+                        var myAveragePlusInitialVal = [myAverage[0]+initialVal[0],myAverage[1]+initialVal[1]];
+
+                        selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myAveragePlusInitialVal);
+                        myTime += (1/24);
+
+
+
+                    }
+
+                    else
+
+                    {
+
+                        var myVal = [(infoStach[myInfoStachIndex].x*myComp.width),(infoStach[myInfoStachIndex].y*myComp.height)];
+                        var myValPlusInitialVal = [myVal[0]+initialVal[0],myVal[1]+initialVal[1]];
+    
+                        selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myValPlusInitialVal);
+                        myTime += (1/24);
+
+
+                    }
+
+
+
+
+
+                }
+                alert("successful averaging");
+
+
+        }
+
+
+        app.endUndoGroup(); 
+        
+    }
+
+
+
+    function smoothing5(infoStach) {
+
+
+    	app.beginUndoGroup("newstuff2");
+		var myComp = app.project.activeItem;
+
+
+				
+		var selectedLayers = myComp.selectedLayers;
+        var myTime = myComp.time;
+        
+
+		for (selectedLayerNumber=0; selectedLayerNumber<selectedLayers.length;selectedLayerNumber++)
+		{
+
+            var initialVal= selectedLayers[selectedLayerNumber].property("position").valueAtTime(myTime,false);
+
+
+				for (myInfoStachIndex=0; myInfoStachIndex<infoStach.length; myInfoStachIndex++)
+				{
+
+
+
+
+                    if (myInfoStachIndex<(infoStach.length-3))
+                    {
+                        var xSum= (infoStach[myInfoStachIndex].x+infoStach[myInfoStachIndex+1].x+infoStach[myInfoStachIndex+2].x+infoStach[myInfoStachIndex+3].x+infoStach[myInfoStachIndex+4].x);
+
+                        var ySum= (infoStach[myInfoStachIndex].y+infoStach[myInfoStachIndex+1].y+infoStach[myInfoStachIndex+2].y+infoStach[myInfoStachIndex+3].y+infoStach[myInfoStachIndex+4].y);
+
+                        var myAverage = [(1/5)*(xSum*myComp.width),(1/5)*(ySum*myComp.height)];
+                        var myAveragePlusInitialVal = [myAverage[0]+initialVal[0],myAverage[1]+initialVal[1]];
+
+                        selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myAveragePlusInitialVal);
+                        myTime += (1/24);
+
+
+
+                    }
+
+                    else
+
+                    {
+
+                        var myVal = [(infoStach[myInfoStachIndex].x*myComp.width),(infoStach[myInfoStachIndex].y*myComp.height)];
+                        var myValPlusInitialVal = [myVal[0]+initialVal[0],myVal[1]+initialVal[1]];
+    
+                        selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myValPlusInitialVal);
+                        myTime += (1/24);
+
+
+                    }
+
+
+
+
+
+                }
+                alert("successful averaging");
+
+
+        }
+
+
+        app.endUndoGroup(); 
+        
+    }

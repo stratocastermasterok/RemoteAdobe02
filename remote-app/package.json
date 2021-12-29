@@ -9,6 +9,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "regression": "^2.0.1",
     "socket.io": "^2.4.1"
   },
   "description": ""

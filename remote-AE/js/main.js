@@ -13,9 +13,57 @@ function tossPositionToLayers(){
 
 	const csInterface = new CSInterface();
 		csInterface.evalScript('pilotHandAECode(['+infoStach+'])', function(res) {
+		//csInterface.evalScript('pilotHandAECodeVisEvery12PlusAv(['+infoStach+'])', function(res) {
+		//csInterface.evalScript('smoothing(['+infoStach+'])', function(res) {
+
+			
 	});
 	//alert(infoStach);
 }
+
+
+function tossPositionInterpolateToLayers(){
+	infoStach=infoStach.toString();
+
+	const csInterface = new CSInterface();
+		csInterface.evalScript('pilotHandAECodeVisEvery12PlusAv(['+infoStach+'])', function(res) {
+
+			
+	});
+	//alert(infoStach);
+}
+
+function tossPositionAverageToLayers(){
+	infoStach=infoStach.toString();
+
+	const csInterface = new CSInterface();
+
+		csInterface.evalScript('smoothing3(['+infoStach+'])', function(res) {
+
+			
+	});
+	//alert(infoStach);
+}
+
+function tossPositionAverageToLayers5(){
+	infoStach=infoStach.toString();
+
+	const csInterface = new CSInterface();
+
+		csInterface.evalScript('smoothing5(['+infoStach+'])', function(res) {
+
+			
+	});
+	//alert(infoStach);
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -33,12 +81,24 @@ socket.on('connect', ()=>{
 
 		//alert(info);
 		infoStach = info;
-	
+
+			
 
 	})
 
 
 	document.getElementById('panelButton').addEventListener('click', tossPositionToLayers);
+	document.getElementById('panelButtonInterpolate').addEventListener('click', tossPositionInterpolateToLayers);
+	document.getElementById('panelButtonAverage').addEventListener('click', tossPositionAverageToLayers);
+	document.getElementById('panelButtonAverage5').addEventListener('click', tossPositionAverageToLayers5);
+
+
+
+
+
+
+
+
 
 })
 

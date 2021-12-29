@@ -32,15 +32,20 @@ socket.on('connect', ()=>{
 
 
 
-          
-          
 
 
+
+
+          
+        
 
             });
 
     });
 
+
+
+    
 
 
 
@@ -60,6 +65,18 @@ socket.on('connect', ()=>{
         console.log(myInfo);
         socket.emit('ButtonPress', myInfo)
 
+
+
+
+
+
+
+        // using regression JS 
+        console.log("started from");
+        var data2022 = [[0,1],[32, 67],[12, 79]];
+        var result = regression.polynomial(data2022, { order: 3 });
+        console.log("My curve fitted result is"+ result);
+
     }
 
     function clearMe(){
@@ -71,6 +88,7 @@ socket.on('connect', ()=>{
     }
 
     
+
 
 
 })
