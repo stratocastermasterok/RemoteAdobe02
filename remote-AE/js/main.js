@@ -60,7 +60,17 @@ function tossPositionAverageToLayers5(){
 
 
 
+function findSlope(){
+	infoStach=infoStach.toString();
 
+	const csInterface = new CSInterface();
+
+		csInterface.evalScript('slope1(['+infoStach+'])', function(res) {
+
+			
+	});
+	//alert(infoStach);
+}
 
 
 
@@ -91,8 +101,9 @@ socket.on('connect', ()=>{
 	document.getElementById('panelButtonInterpolate').addEventListener('click', tossPositionInterpolateToLayers);
 	document.getElementById('panelButtonAverage').addEventListener('click', tossPositionAverageToLayers);
 	document.getElementById('panelButtonAverage5').addEventListener('click', tossPositionAverageToLayers5);
+	document.getElementById('panelFindSlope').addEventListener('click', findSlope);
 
-
+	
 
 
 

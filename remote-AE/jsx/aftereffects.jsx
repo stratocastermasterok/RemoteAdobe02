@@ -400,3 +400,87 @@ function osCheck() {
         app.endUndoGroup(); 
         
     }
+
+
+
+
+
+    function slope1(infoStach) {
+
+
+    	app.beginUndoGroup("newstuff2");
+		var myComp = app.project.activeItem;
+
+
+		var myZeroSlopes =[];
+		var selectedLayers = myComp.selectedLayers;
+        var myTime = myComp.time;
+        
+
+		for (selectedLayerNumber=0; selectedLayerNumber<selectedLayers.length;selectedLayerNumber++)
+		{
+
+            var initialVal= selectedLayers[selectedLayerNumber].property("position").valueAtTime(myTime,false);
+
+
+				for (myInfoStachIndex=0; myInfoStachIndex<infoStach.length; myInfoStachIndex++)
+				{
+
+
+
+
+                    if (myInfoStachIndex<(infoStach.length-3))
+                    {
+
+                        var mySlope =   (infoStach[myInfoStachIndex+1].y - infoStach[myInfoStachIndex].y) /  (infoStach[myInfoStachIndex+1].x - infoStach[myInfoStachIndex].x);
+
+
+                        var xSum= (infoStach[myInfoStachIndex].x+infoStach[myInfoStachIndex+1].x+infoStach[myInfoStachIndex+2].x+infoStach[myInfoStachIndex+3].x+infoStach[myInfoStachIndex+4].x);
+
+                        var ySum= (infoStach[myInfoStachIndex].y+infoStach[myInfoStachIndex+1].y+infoStach[myInfoStachIndex+2].y+infoStach[myInfoStachIndex+3].y+infoStach[myInfoStachIndex+4].y);
+
+                        var myAverage = [(1/5)*(xSum*myComp.width),(1/5)*(ySum*myComp.height)];
+                        var myAveragePlusInitialVal = [myAverage[0]+initialVal[0],myAverage[1]+initialVal[1]];
+
+
+
+                        if (mySlope < 0.15 && mySlope > -0.15)
+                        {
+                            myZeroSlopes.push(myTime);
+                            selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myAveragePlusInitialVal);
+
+                        }
+
+                        myTime += (1/24);
+
+
+
+                    }
+
+                    else
+
+                    {
+
+                        var myVal = [(infoStach[myInfoStachIndex].x*myComp.width),(infoStach[myInfoStachIndex].y*myComp.height)];
+                        var myValPlusInitialVal = [myVal[0]+initialVal[0],myVal[1]+initialVal[1]];
+    
+                        //selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myValPlusInitialVal);
+                        myTime += (1/24);
+
+
+                    }
+
+
+
+
+
+                }
+                alert("successful averaging");
+
+
+        }
+
+
+        app.endUndoGroup(); 
+        
+    }
