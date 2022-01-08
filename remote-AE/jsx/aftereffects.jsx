@@ -435,6 +435,7 @@ function osCheck() {
                     {
 
                         var mySlope =   (infoStach[myInfoStachIndex+1].y - infoStach[myInfoStachIndex].y) /  (infoStach[myInfoStachIndex+1].x - infoStach[myInfoStachIndex].x);
+                        var mySlope2 =   (infoStach[myInfoStachIndex+4].y - infoStach[myInfoStachIndex+3].y) /  (infoStach[myInfoStachIndex+4].x - infoStach[myInfoStachIndex+3].x);
 
 
                         var xSum= (infoStach[myInfoStachIndex].x+infoStach[myInfoStachIndex+1].x+infoStach[myInfoStachIndex+2].x+infoStach[myInfoStachIndex+3].x+infoStach[myInfoStachIndex+4].x);
@@ -462,8 +463,22 @@ function osCheck() {
                             selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myAveragePlusInitialVal);
                             myTracker =myTime+(3/24);
                             mySignal = false;
-
                         }
+                        if (mySlope >0 && mySlope2 <=0 && mySignal==true)
+                        {
+                            myZeroSlopes.push(myTime);
+                            selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myAveragePlusInitialVal);
+                            myTracker =myTime+(3/24);
+                            mySignal = false;
+                        }
+                        if (mySlope <0 && mySlope2 >=0 && mySignal==true)
+                        {
+                            myZeroSlopes.push(myTime);
+                            selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myAveragePlusInitialVal);
+                            myTracker =myTime+(3/24);
+                            mySignal = false;
+                        }
+
 
                         myTime += (1/24);
 
