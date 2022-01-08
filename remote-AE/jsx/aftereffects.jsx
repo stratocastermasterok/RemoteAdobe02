@@ -456,7 +456,7 @@ function osCheck() {
 
 
 
-                        if (mySlope < 0.1 && mySlope > -0.1 && mySignal==true)
+                        if (mySlope < 0.02 && mySlope > -0.02 && mySignal==true)
                         {
                             myZeroSlopes.push(myTime);
                             selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myAveragePlusInitialVal);
@@ -484,7 +484,7 @@ function osCheck() {
 
                     }
 
-                        
+
 
 
 
