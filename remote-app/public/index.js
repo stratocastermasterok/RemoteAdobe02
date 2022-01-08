@@ -21,8 +21,8 @@ socket.on('connect', ()=>{
                 document.getElementById('area').addEventListener('mousemove',e => {
 
                 const data = {
-                                x: e.offsetX -myFirstPointX,
-                                y: e.offsetY -myFirstPointY
+                                x: ((e.offsetX -myFirstPointX)/1920*2),
+                                y: ((e.offsetY -myFirstPointY)/1080*2)
                             };
 
 

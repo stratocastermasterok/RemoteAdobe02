@@ -415,6 +415,8 @@ function osCheck() {
 		var myZeroSlopes =[];
 		var selectedLayers = myComp.selectedLayers;
         var myTime = myComp.time;
+        var mySignal = true;
+        var myTracker = 0;
         
 
 		for (selectedLayerNumber=0; selectedLayerNumber<selectedLayers.length;selectedLayerNumber++)
@@ -442,12 +444,24 @@ function osCheck() {
                         var myAverage = [(1/5)*(xSum*myComp.width),(1/5)*(ySum*myComp.height)];
                         var myAveragePlusInitialVal = [myAverage[0]+initialVal[0],myAverage[1]+initialVal[1]];
 
+                        if (myTime>=myTracker)
+                        {
+                            mySignal = true;
+
+                        }
+                        else
+                        {
+                            mySignal = false;
+                        }
 
 
-                        if (mySlope < 0.2 && mySlope > -0.2)
+
+                        if (mySlope < 0.1 && mySlope > -0.1 && mySignal==true)
                         {
                             myZeroSlopes.push(myTime);
                             selectedLayers[selectedLayerNumber].property("position").setValueAtTime(myTime,myAveragePlusInitialVal);
+                            myTracker =myTime+(3/24);
+                            mySignal = false;
 
                         }
 
@@ -470,7 +484,7 @@ function osCheck() {
 
                     }
 
-
+                        
 
 
 
